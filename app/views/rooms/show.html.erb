@@ -1,11 +1,34 @@
-<div id="rooms"></div>
+<div class="avatar cf">
+  <h3><span>today you are</span></h3>
+  <img src="/assets/avatars/av1.png" id="avatarImage">
+  <h1 id="avatarName"></h1>
+  <h3>your avatar will refresh in <span> 5:03 hours </span></h3>
+</div>
 
-<div id='messagesDiv'></div>
-<input type='text' id='messageInput' placeholder='Message...'>
+<div class="list">
+  <ul class="posts">
+    <li class="cf">
+      <h2 class="right-text span25 fR">43<img src='images/ghost-icon.png'></h2>
+      <img src="images/avatars/av1.png" class="avatar-small fL">
+      <h2>crustyHipster3</h2>
+      <div class="span100 fL">
+        <p>"Help, I'm trapped in the bathroom!"<span class ="date"> 4 hours ago</span></p>
+        <ul class="social cf">
+          <li><a href=""><img src="images/yay.png"></a></li>
+          <li><a href=""><img src="images/boo.png"></a></li>
+          <li><a href=""><img src="images/share.png"></a></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="postbar">
+  <input type='text' id='messageInput' placeholder='Message...'>
+</div>
 
 <script type="text/javascript">
   $(function() {
-    GhostPost.room = '<%= @room.html_safe %>';
+    GhostPost.room='<%= @room.html_safe %>';
     GhostPost.start();
   });
 </script>
