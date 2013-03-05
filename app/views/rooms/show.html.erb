@@ -22,7 +22,8 @@
 
 <script type="text/javascript">
   $(function() {
-    GhostPost.room='<%= @room.html_safe %>';
+    GhostPost.room='<%= @room.html_safe.downcase %>';
+    GhostPost.resetName = <%= @resetName ? 'true' : 'false' %>;
     GhostPost.start();
   });
 </script>
