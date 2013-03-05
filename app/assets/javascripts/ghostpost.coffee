@@ -17,10 +17,11 @@ window.GhostPost =
       if e.keyCode is 13
         name = $("#nameInput").val()
         text = $("#messageInput").val()
-        messagesRef.push
-          name: GhostPost.username
-          avatar_id: GhostPost.avatar_id
-          text: text
+        if text
+          messagesRef.push
+            name: GhostPost.username
+            avatar_id: GhostPost.avatar_id
+            text: text
 
         $("#messageInput").val ""
 
