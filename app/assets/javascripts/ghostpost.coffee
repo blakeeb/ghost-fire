@@ -43,7 +43,6 @@ window.GhostPost =
     messagesRef.limit(30).on "child_added", (snapshot) ->
       message = snapshot.val()
       $("<div/>").text(message.text).prepend($("<em/>").text(message.name + ": ")).appendTo $("#messagesDiv")
-<<<<<<< HEAD
       $("#messagesDiv")[0].scrollTop = $("#messagesDiv")[0].scrollHeight
 
 
@@ -65,6 +64,5 @@ window.GhostPost =
     else
       alert "disconnected from ", GhostPost.room
 
-=======
+
       $(".posts")[0].scrollTop = $(".posts")[0].scrollHeight + 50
->>>>>>> 15eaf8a67810f2ea117e72b2e1f62366dc0b53c2
