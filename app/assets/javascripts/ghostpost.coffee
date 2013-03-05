@@ -24,6 +24,7 @@ window.GhostPost =
       localStorage.username = GhostPost.username
       localStorage.avatar_id = GhostPost.avatar_id
 
+
     # Display avatarname and image on the screen
     $('#avatarName').html GhostPost.username
     $('#avatarImage').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
@@ -47,4 +48,22 @@ window.GhostPost =
       $("<div/>").text(message.text).prepend($("<em/>").text(message.name + ": ")).appendTo $("#messagesDiv")
       $("#messagesDiv")[0].scrollTop = $("#messagesDiv")[0].scrollHeight
 
+
+
+    # presence management
+
+    # Presence for the User
+    presenceRef = new Firebase 'https://ghostpost.firebaseio.com/' + GhostPost.username + '/online'
+    # Make sure if I lose my connection I am marked as offline.
+    presenceRef.onDisconnect().set(false);
+    # Now, mark myself as online.
+    presenceRef.set(true);
+
+    # Create an alert when entering or leaving a room
+    connectedRef = new Firebase("https://ghostpost.firebaseio.com/.info/connected")
+    connectedRef.on "value", (snap) ->
+    if snap.val() is true
+      alert "connected to ", GhostPost.room
+    else
+      alert "disconnected from ", GhostPost.room
 
