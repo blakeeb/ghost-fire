@@ -29,4 +29,4 @@ window.GhostPost =
     messagesRef.limit(30).on "child_added", (snapshot) ->
       message = snapshot.val()
       $("<div/>").text(message.text).prepend($("<em/>").text(message.name + ": ")).appendTo $("#messagesDiv")
-      $("#messagesDiv")[0].scrollTop = $("#messagesDiv")[0].scrollHeight
+      $(".posts")[0].scrollTop = $(".posts")[0].scrollHeight + 50
