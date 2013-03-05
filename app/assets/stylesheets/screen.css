@@ -365,9 +365,17 @@ ul.soloShare {
   border: 2px solid grey;
   padding-left: 10px;
   font-size: 1.5em;
+  color: white;
 }
 
 #avatarImage {
   height: 100px;
   width: 100px;
+  float: left;
+}
+
+#messagesDiv div {
+  font-size: 2em;
+  color: white;
+  margin: 10px 20px;
 }
