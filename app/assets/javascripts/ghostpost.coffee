@@ -61,8 +61,6 @@ window.GhostPost =
     if text
       if text.length > 200
           alert 'Whoa there! Max message length is around 140.9 chars.'
-          $("#messageInput").val ""
-          $("#messageInput").blur
       else
         @messagesRef.push
           name: GhostPost.username
