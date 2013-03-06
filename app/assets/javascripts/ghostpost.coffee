@@ -46,11 +46,16 @@ window.GhostPost =
         name = $("#nameInput").val()
         text = $("#messageInput").val()
         if text
-          messagesRef.push
-            name: GhostPost.username
-            avatar_id: GhostPost.avatar_id
-            text: text
-            created_at: Date.now()
+          if text.length > 200
+              alert 'Whoa there! Max message length is around 140.9 chars.'
+              $("#messageInput").val ""
+              $("#messageInput").blur
+          else
+            messagesRef.push
+              name: GhostPost.username
+              avatar_id: GhostPost.avatar_id
+              text: text
+              created_at: Date.now()
         if window.webkitNotifications
           window.webkitNotifications.requestPermission() unless window.webkitNotifications.checkPermission() == 0
         $("#messageInput").val ""
