@@ -55,7 +55,7 @@ window.GhostPost =
     $('#avatarImageSmall').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
     $('html, body').scrollTop $(document).height()
 
-  postMessage: fnThrottle 3000, ->
+  postMessage: fnThrottle 750, ->
     name = $("#nameInput").val()
     text = $("#messageInput").val()
     if text
