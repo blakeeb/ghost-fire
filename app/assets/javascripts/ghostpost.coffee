@@ -1,7 +1,30 @@
+# Throttle
+fnThrottle = (wait, func) ->
+  context= args= timeout= result = null
+  previous = 0;
+  later = () ->
+    previous = new Date;
+    timeout = null;
+    result = func.apply(context, args);
+  return () ->
+    now = new Date;
+    remaining = wait - (now - previous);
+    context = this;
+    args = arguments;
+    if remaining <= 0
+      clearTimeout timeout
+      timeout = null
+      previous = now
+      result = func.apply context, args
+    else if !timeout
+      #timeout = setTimeout(later, remaining);
+      alert("You have been throttled.")
+    return result
+
 window.GhostPost =
   start: ->
     # Get a reference to the root of the chat data.
-    messagesRef = new Firebase("https://ghostpost.firebaseio.com/rooms/" + GhostPost.room)
+    @messagesRef = new Firebase("https://ghostpost.firebaseio.com/rooms/" + GhostPost.room)
     GhostPost.joined_at = Date.now()
 
   initializeUser: ->
@@ -32,12 +55,31 @@ window.GhostPost =
     $('#avatarImageSmall').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
     $('html, body').scrollTop $(document).height()
 
+  postMessage: fnThrottle 3000, ->
+    name = $("#nameInput").val()
+    text = $("#messageInput").val()
+    if text
+      if text.length > 200
+          alert 'Whoa there! Max message length is around 140.9 chars.'
+          $("#messageInput").val ""
+          $("#messageInput").blur
+      else
+        @messagesRef.push
+          name: GhostPost.username
+          avatar_id: GhostPost.avatar_id
+          text: text
+          created_at: Date.now()
+    if window.webkitNotifications
+      window.webkitNotifications.requestPermission() unless window.webkitNotifications.checkPermission() == 0
+    $("#messageInput").val ""
+    $("#messageInput").blur
 
   getMessages: ->
     # Get a reference to the root of the chat data.
-    messagesRef = new Firebase("https://ghostpost.firebaseio.com/rooms/" + GhostPost.room)
+    self = @
+    @messagesRef = new Firebase("https://ghostpost.firebaseio.com/rooms/" + GhostPost.room)
 
-    messagesRef.child('name').set(GhostPost.room)
+    @messagesRef.child('name').set(GhostPost.room)
     console.log 'set(GhostPost.room', GhostPost.room
 
     GhostPost.joined_at = Date.now()
@@ -45,26 +87,9 @@ window.GhostPost =
     # When the user presses enter on the message input, write the message to firebase.
     $("#messageInput").keypress (e) ->
       if e.keyCode is 13
-        name = $("#nameInput").val()
-        text = $("#messageInput").val()
-        if text
-          if text.length > 200
-              alert 'Whoa there! Max message length is around 140.9 chars.'
-              $("#messageInput").val ""
-              $("#messageInput").blur
-          else
-            messagesRef.push
-              name: GhostPost.username
-              avatar_id: GhostPost.avatar_id
-              text: text
-              created_at: Date.now()
-        if window.webkitNotifications
-          window.webkitNotifications.requestPermission() unless window.webkitNotifications.checkPermission() == 0
-        $("#messageInput").val ""
-        $("#messageInput").blur
-
+        self.postMessage()
     # Add a callback that is triggered for each chat message.
-    messagesRef.limit(30).on "child_added", (snapshot) ->
+    @messagesRef.limit(30).on "child_added", (snapshot) ->
       message = snapshot.val()
       if (message.created_at > GhostPost.joined_at) && message.name != GhostPost.username && window.webkitNotifications
         GhostPost.desktopNotify message
@@ -105,7 +130,8 @@ Handlebars.registerHelper 'messageText', (text) ->
   if typeof text != 'string'
     text = text.string
   text = Handlebars.Utils.escapeExpression text
-  text = text.replace(///\s#([\w\d]+)\b///g, "<a href='http://ghostpost.io/$1'>#$1</a>")
+  text = text.replace(///\s#([\w\d]+)\b///g, "<a target='_blank' href='http://ghostpost.io/$1'>#$1</a>")
+  text = text.replace(///^#([\w\d]+)\b///g, "<a target='_blank' href='http://ghostpost.io/$1'>#$1</a>")
   return new Handlebars.SafeString(text);
 
 # Live update times on the page every minute
