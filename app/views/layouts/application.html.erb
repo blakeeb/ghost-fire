@@ -5,6 +5,7 @@
   <script src="https://cdn.firebase.com/v0/firebase.js"></script>
   <meta content="yes" name="apple-mobile-web-app-capable" />
   <meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport" />
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -34,6 +35,7 @@
     <h3><span>today you are</span></h3>
     <img src="/assets/avatars/av1.png" id="avatarImage">
     <h1 id="avatarName"></h1>
+    <br>
     <h3>
       <a href="?reset=true" class="avatarButton">fresh start</a>
     </h3>

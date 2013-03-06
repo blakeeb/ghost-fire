@@ -380,7 +380,7 @@ ul.soloShare {
 .postbar input {
   margin-top: 10px;
   height: 27px;
-  width: 90%;
+  width: 77%;
   background-color: black;
   border: 2px solid grey;
   padding-left: 10px;
@@ -405,4 +405,13 @@ ul.soloShare {
   padding: 5px 15px;
   border: 1px #ccc solid;
   margin-top: 10px;
+}
+
+#avatarNameSmall, #avatarImageMini {
+    float: left;
+    margin-top: 18px;
+}
+
+#avatarImageMini {
+    margin-left: 5px;
 }
