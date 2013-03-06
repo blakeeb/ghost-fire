@@ -369,7 +369,7 @@ ul.soloShare {
 .postbar {
   width: 100%;
   position: fixed;
-  bottom: 50px;
+  bottom: 0px;
   z-index: 101;
   background-color: black;
   background: transparent url(/assets/nav.png) repeat-x 0 0;

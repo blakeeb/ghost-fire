@@ -1,5 +1,14 @@
-Start a room!
+List of Rooms:
+<div class="list">
+  <ul class="posts" id="roomsDiv"></ul>
+</div>
+
+
 
 <script>
+  $(function() {
+    GhostPost.initializeUser();
+    GhostPost.listRooms();
+  });
 
 </script>
