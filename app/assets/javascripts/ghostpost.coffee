@@ -23,6 +23,9 @@ window.GhostPost =
   getMessages: ->
     # Get a reference to the root of the chat data.
     messagesRef = new Firebase("https://ghostpost.firebaseio.com/rooms/" + GhostPost.room)
+
+    messagesRef.child('name').set(GhostPost.room)
+
     GhostPost.joined_at = Date.now()
 
     adjectives = ['Silly','Fuzzy','Crusty','Fat','Evil','Mad','Madest','Fat','Fatest','Dumb','Dumest','Worst','Saintly','Perverse','Wild','Wildest','Smelly','Smelliest','Crabby','Crabbiest','Annoying','Simple','Sadistic','Troubled','Ecstatic','Janky','Loopy','Snarky','Healthy','Tasty','Tricky','Ugly','Dirty','Terrible','Fugly','Crappy','Sweetest','Rude','Fair','Stoopid','Fast','Gay','Not-gay','Scrappy','Shallow','Average','Arrogant','Ashamed','Dizzy','Dull','Sarcastic','Hungry','Moaning','Modern','Icy','Proud','Mr.','Mrs.','Stingy','Smal','Tall','Large','Little','Big','Frantic','Petite','Prickly','Jealous','Ordinary','Obnoxious','Energetic','Wicked','Wet','Witty','Biggie','Smokey','Interesting','Funky']
@@ -69,5 +72,7 @@ window.GhostPost =
     roomsRef = new Firebase "https://ghostpost.firebaseio.com/rooms"
     roomsRef.limit(10).on "child_added", (snapshot) ->
       room = snapshot.val()
+      console.log 'room', room, 'room.name', room.name
       $("#roomsDiv").append HandlebarsTemplates['rooms/show']({ room })
+
 
