@@ -77,7 +77,6 @@ window.GhostPost =
     roomsRef = new Firebase "https://ghostpost.firebaseio.com/rooms"
     roomsRef.limit(25).on "child_added", (snapshot) ->
       room = snapshot.val()
-      console.log 'room', room, 'room.name', room.name
       $("#roomsDiv").append HandlebarsTemplates['rooms/show']({ room })
 
 
