@@ -23,8 +23,8 @@ window.GhostPost =
       localStorage.avatar_id = GhostPost.avatar_id
 
     # Display avatarname and image on the screen
-    $('#avatarName').html GhostPost.username
-    $('#avatarImage').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
+    $('.avatarName').html GhostPost.username
+    $('.avatarImage').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
 
 
   getMessages: ->
