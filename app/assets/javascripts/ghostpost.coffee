@@ -112,7 +112,6 @@ window.GhostPost =
         console.log("String returned when message expected")
         return 
       message = prepSnapshotForRender(snapshot)
-      votes[message.id] = false
       if (message.created_at > GhostPost.joined_at) && message.name != GhostPost.username && window.webkitNotifications
         GhostPost.desktopNotify message
       # Render the message and store the snapshot on the dom elt
@@ -166,11 +165,12 @@ window.GhostPost =
 
 # Vote handling
 messageSnapshots = {}
-votes = {}
+debugger
+
 vote = (elt, value) ->
   id = elt.data('id')
-  if ! votes[id]
-    votes[id] = value
+  if ! localStorage['votes' + id]
+    localStorage['votes'+id] = value
     ref = new Firebase("https://ghostpost.firebaseio.com/rooms/" + GhostPost.room + '/' + id)
     ref.update {score: (messageSnapshots[id].val().score || 0) + value}
 
@@ -185,8 +185,8 @@ attachVotingHandlers = (elt) ->
   down.on 'click', (evt) ->
     elt = $ evt.currentTarget
     vote(elt, -1)
-  if votes[id]
-    if votes[id] > 0
+  if localStorage['votes'+id]
+    if parseInt(localStorage['votes'+id]) > 0
       up.css('opacity', 1)
       down.hide()
     else
