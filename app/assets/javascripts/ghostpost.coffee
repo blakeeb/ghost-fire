@@ -90,15 +90,33 @@ window.GhostPost =
       if e.keyCode is 13
         self.postMessage()
     # Add a callback that is triggered for each chat message.
-    @messagesRef.limit(30).on "child_added", (snapshot) ->
+    prepSnapshotForRender = (snapshot) ->
+      id = snapshot.Yb.path.m[2]
+      messageSnapshots[id] = snapshot
       message = snapshot.val()
-      if (message.created_at > GhostPost.joined_at) && message.name != GhostPost.username && window.webkitNotifications
-        GhostPost.desktopNotify message
+      message.id = id
       if message.text
         message.time = humaneDate(new Date(message.created_at))
-        $("#messagesDiv").append HandlebarsTemplates['messages/show']({ message })
-        $('html, body').scrollTop $(document).height()
-        $('li[data-username="' + GhostPost.username + '"]').addClass('mine')
+      message
+
+    @messagesRef.on "child_changed", (snapshot) ->
+      message = prepSnapshotForRender(snapshot)
+      console.log(message)
+      elt = $(HandlebarsTemplates['messages/show']({ message }))
+      $('#' + message.id).replaceWith(elt)
+      attachVotingHandlers elt
+
+    @messagesRef.limit(30).on "child_added", (snapshot) ->
+      message = prepSnapshotForRender(snapshot)
+      votes[message.id] = false
+      if (message.created_at > GhostPost.joined_at) && message.name != GhostPost.username && window.webkitNotifications
+        GhostPost.desktopNotify message
+      # Render the message and store the snapshot on the dom elt
+      elt = $(HandlebarsTemplates['messages/show']({ message }))
+      $("#messagesDiv").append elt
+      attachVotingHandlers elt
+      $('html, body').scrollTop $(document).height()
+      $('li[data-username=' + GhostPost.username + ']').addClass('mine')
 
   desktopNotify: (data) ->
     havePermission = window.webkitNotifications.checkPermission()
@@ -128,15 +146,45 @@ window.GhostPost =
   welcomeAvatar: ->
     $("#welcomeAvatar").html HandlebarsTemplates['home/avatarLarge']({ GhostPost })
 
+# Vote handling
+messageSnapshots = {}
+votes = {}
+vote = (elt, value) ->
+  id = elt.data('id')
+  if ! votes[id]
+    votes[id] = value
+    ref = new Firebase("https://ghostpost.firebaseio.com/rooms/" + GhostPost.room + '/' + id)
+    ref.update {score: (messageSnapshots[id].val().score || 0) + value}
+
+attachVotingHandlers = (elt) ->
+  up = elt.find('.upvote')
+  id = up.data('id')
+  up.on 'click', (evt) ->
+    elt = $ evt.currentTarget
+    vote(elt, 1)
+
+  down = elt.find('.downvote')
+  down.on 'click', (evt) ->
+    elt = $ evt.currentTarget
+    vote(elt, -1)
+  if votes[id]
+    if votes[id] > 0
+      up.css('opacity', 1)
+      down.hide()
+    else
+      down.css('opacity', 1)
+      up.hide()
 
 # Hashtag link processor helper
 Handlebars.registerHelper 'messageText', (text) ->
-  if typeof text != 'string'
-    text = text.string
-  text = Handlebars.Utils.escapeExpression text
-  text = text.replace(///\s#([\w\d]+)\b///g, "<a target='_blank' href='http://ghostpost.io/$1'>#$1</a>")
-  text = text.replace(///^#([\w\d]+)\b///g, "<a target='_blank' href='http://ghostpost.io/$1'>#$1</a>")
-  return new Handlebars.SafeString(text);
+  if text
+    if typeof text != 'string'
+      text = text.string
+    text = Handlebars.Utils.escapeExpression text
+    text = text.replace(///\s#([\w\d]+)\b///g, "<a target='_blank' href='http://ghostpost.io/$1'>#$1</a>")
+    text = text.replace(///^#([\w\d]+)\b///g, "<a target='_blank' href='http://ghostpost.io/$1'>#$1</a>")
+    return new Handlebars.SafeString(text);
+  text
 
 # Live update times on the page every minute
 timeResetInterval = ->
