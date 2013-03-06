@@ -22,8 +22,10 @@ window.GhostPost =
       localStorage.username = GhostPost.username
       localStorage.avatar_id = GhostPost.avatar_id
 
+<<<<<<< HEAD
       # Display new Avatar Message and image on the screen
       $("#avatarNotificationDiv").html HandlebarsTemplates['messages/avatarNotification']({ GhostPost })
+
 
     # Commenting this out as we now append the new Ghostpost
     $('#avatarName').html GhostPost.username
@@ -31,6 +33,11 @@ window.GhostPost =
     $('#avatarNameSmall').html GhostPost.username
     $('#avatarImageSmall').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
     $('html, body').scrollTop $(document).height()
+=======
+    # Display avatarname and image on the screen
+    $('.avatarName').html GhostPost.username
+    $('.avatarImage').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
+>>>>>>> 7a5e8ba9134f21a63425f3fb120c892adc3f8b46
 
 
   getMessages: ->
@@ -88,13 +95,14 @@ window.GhostPost =
       room = snapshot.val()
       $("#roomsDiv").append HandlebarsTemplates['rooms/show']({ room })
 
+<<<<<<< HEAD
   resetAvatar: ->
       localStorage.removeItem("username")
       localStorage.removeItem("avatar_id")
       GhostPost.resetName = true
       GhostPost.initializeUser()
 
-
+=======
 # Hashtag link processor helper
 Handlebars.registerHelper 'messageText', (text) ->
   if typeof text != 'string'

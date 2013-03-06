@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-    redirect_to '/partybus'
+    redirect_to '/welcome'
   end
 end

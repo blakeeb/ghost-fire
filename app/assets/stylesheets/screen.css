@@ -391,6 +391,10 @@ ul li.Close {
   margin-bottom: 3px;
 }
 
+.posts .message-time {
+  color: #555;
+}
+
 .posts img {
   width: 50px;
   height: 50px;
@@ -478,4 +482,8 @@ ul.navright li {
 
 ul.navright li {
     font-size: 1.4em;
+}
+
+.messageText a {
+  color: #65A0F7;
 }
