@@ -49,24 +49,6 @@ window.GhostPost =
 
 
 
-    # presence management
-
-    # Presence for the User
-    presenceRef = new Firebase 'https://ghostpost.firebaseio.com/' + GhostPost.username + '/online'
-    # Make sure if I lose my connection I am marked as offline.
-    presenceRef.onDisconnect().set(false);
-    # Now, mark myself as online.
-    presenceRef.set(true);
-
-    # Create an alert when entering or leaving a room
-    connectedRef = new Firebase("https://ghostpost.firebaseio.com/.info/connected")
-    connectedRef.on "value", (snap) ->
-    if snap.val() is true
-      alert "connected to ", GhostPost.room
-    else
-      alert "disconnected from ", GhostPost.room
-
-
       $(".posts")[0].scrollTop = $(".posts")[0].scrollHeight + 50
 
   notify: (data) ->
