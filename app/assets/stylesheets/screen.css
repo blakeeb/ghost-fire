@@ -141,11 +141,12 @@ nav {
 
 .list {
     color: #B3B3B3;
-    padding-bottom: 6px;
+    padding-bottom: 100px;
 }
 
 .mine {
-  background-color: rgba(255,255,255,0.1);
+  border: 1px dashed #60f7fc;
+  width: 95% !important;
 }
 
 h3.list-title {
@@ -155,9 +156,9 @@ h3.list-title {
 }
 
 .list li {
-    padding: 4px 5%;
+    padding: 4px 2%;
     margin-bottom: 3px;
-    width: 90%;
+    width: 96%;
 }
 
 .list li a:hover, .list li a:active {
@@ -205,7 +206,7 @@ ul.social li {
 img.avatar-small {
     width: 24px;
     margin-top: 9px;
-    margin-right: 3px;
+    margin-right: -9px;
 }
 
 /* chat entry */
@@ -363,13 +364,12 @@ ul.soloShare {
 .posts img {
   width: 50px;
   height: 50px;
-  float: left;
 }
 
 .postbar {
   width: 100%;
   position: fixed;
-  bottom: 0;
+  bottom: 0px;
   z-index: 101;
   background-color: black;
   background: transparent url(/assets/nav.png) repeat-x 0 0;
@@ -399,4 +399,10 @@ ul.soloShare {
   margin: 10px 15px;
   width: 76%;
   float: left;
+}
+
+.avatarButton {
+  padding: 5px 15px;
+  border: 1px #ccc solid;
+  margin-top: 10px;
 }

@@ -3,7 +3,8 @@
 <head>
   <title>ghostpost MMVP</title>
   <script src="https://cdn.firebase.com/v0/firebase.js"></script>
-  <meta name = "viewport" content = "initial-scale=1.0, width=device-width" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport" />
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -29,6 +30,7 @@
 </div>-->
 <div class="main">
 
+<<<<<<< HEAD
   <div class="avatar cf">
     <h3><span>today you are</span></h3>
     <img src="/assets/avatars/av1.png" id="avatarImage">
@@ -36,6 +38,8 @@
     <h3>your avatar will refresh in <span> 5:03 hours </span></h3>
   </div>
 
+=======
+>>>>>>> d961dc1e6cf2df9a534d0b8577e9ea75a847e102
 <%= yield %>
 
 </div>
