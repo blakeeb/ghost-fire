@@ -25,6 +25,7 @@ window.GhostPost =
     messagesRef = new Firebase("https://ghostpost.firebaseio.com/rooms/" + GhostPost.room)
 
     messagesRef.child('name').set(GhostPost.room)
+    console.log 'set(GhostPost.room', GhostPost.room
 
     GhostPost.joined_at = Date.now()
 
@@ -70,7 +71,7 @@ window.GhostPost =
 
   listRooms: ->
     roomsRef = new Firebase "https://ghostpost.firebaseio.com/rooms"
-    roomsRef.limit(10).on "child_added", (snapshot) ->
+    roomsRef.limit(25).on "child_added", (snapshot) ->
       room = snapshot.val()
       console.log 'room', room, 'room.name', room.name
       $("#roomsDiv").append HandlebarsTemplates['rooms/show']({ room })
