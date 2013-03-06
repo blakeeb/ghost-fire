@@ -54,6 +54,7 @@ window.GhostPost =
         if window.webkitNotifications
           window.webkitNotifications.requestPermission() unless window.webkitNotifications.checkPermission() == 0
         $("#messageInput").val ""
+        $("#messageInput").blur
 
     # Add a callback that is triggered for each chat message.
     messagesRef.limit(30).on "child_added", (snapshot) ->
