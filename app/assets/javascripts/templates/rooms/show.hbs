@@ -1,14 +1,21 @@
-<li class="cf">
-  <div class="messageText">
-    <em>
-    <a href="/{{room.name}}">
-      {{#if room.name }}
-        {{room.name}}
-      {{else}}
-        Anonymous Room!
-      {{/if}}
-    </a>
-    <span class="message-time fR" data-time={{message.created_at}}>{{ message.time}}</span></em>
-
-  </div>
+<li class = "cf" >
+  <a href="/{{room.name}}">
+    <div class = "event-title span75 fL">
+      <h3>
+        {{#if room.name }}
+          {{room.name}}
+        {{else}}
+          Anonymous Room!
+        {{/if}}
+      </h3>
+    </div>
+      <h2 class = "right-text span25 fR">{{ room.messages}}<img src = 'images/ghost-icon.png'></h2>
+  </a>
 </li>
+
+<!--
+    <div class = "top-post fL">
+    <p class = "right-text span25 fR"><span class="date"></date><img src = 'images/ghost-icon.png'></p>
+
+    </div>
+-->

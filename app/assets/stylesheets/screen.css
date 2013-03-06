@@ -52,6 +52,10 @@ h3 {
     letter-spacing: 0.5px;
 }
 
+.event-title h3 {
+    color: #60F7FC;
+}
+
 ul {
     list-style: none;
     padding-left: 0;
@@ -96,7 +100,7 @@ nav {
     background-color: black;
     background: transparent url(/assets/nav.png) repeat-x 0 0;
     padding: 15px 0 10px 0;
-    text-align: center;
+    float: left;
 }
 
 .button{
@@ -123,6 +127,8 @@ nav {
 
 /* avatar */
 
+
+
 .avatar {
     /*background: rgba(255,255,255,0.1);*/
     border-radius: 1em;
@@ -130,6 +136,13 @@ nav {
     border: 1px dashed #60F7FC;
     text-align: center;
     margin: 20px;
+}
+
+.avatar-large {
+    border: 1px dashed #60F7FC;
+    border-radius: 1em;
+    margin: 20px;
+    text-align: center;
 }
 
 /* event list */
@@ -155,9 +168,11 @@ h3.list-title {
 }
 
 .list li {
-    padding: 4px 2%;
+    background: rgba(0,0,0,0.2);
+    padding: 3px 5%;
     margin-bottom: 3px;
-    width: 96%;
+    float: left;
+    width: 90%;
 }
 
 .list li a:hover, .list li a:active {
@@ -431,7 +446,6 @@ ul li.Close {
   font-size: 1.6em;
   color: white;
   margin: 0px 0px;
-  width: 100%;
   float: left;
 }
 
@@ -501,3 +515,15 @@ li.Close a {
     background: transparent;
 }
 
+.introduction p{
+  margin-bottom: 15px
+}
+
+.avatarImageLarge {
+  width: 200px;
+
+}
+
+.normalfont {
+  font-size: 150%;
+}

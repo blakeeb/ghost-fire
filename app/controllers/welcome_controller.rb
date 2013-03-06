@@ -1,7 +1,8 @@
 class WelcomeController < ApplicationController
   def index
 
-    redirect_to '/startups-rock'
+    #commented out so that we can buidl the home page
+    #redirect_to '/startups-rock'
 
   end
 end

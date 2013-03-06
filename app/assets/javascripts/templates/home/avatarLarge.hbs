@@ -1,8 +1,21 @@
- <h2> <span>You are now: </span></h2>
- <img src="{{ GhostPost.avatar_url }}">
- <h2>{{GhostPost.name}}</h2>
- <h3>Go chat away... anonymously!</h3>
- <br>
-<a class="avatarButton" href="javascript://" onclick='GhostPost.resetAvatar(); false'>reset</a>
-<a href="/gopro.html" target="onTop" class="avatarButton white" >Unlock more Avatars</a>
+<h2> <span>You are now: </span></h2>
+ <img src="{{ GhostPost.avatar_url }}" class="avatarImageLarge">
+ <h1>{{GhostPost.username}}</h1>
+
+
+<a class="avatarButton normalfont" href="javascript://" onclick='GhostPost.resetAvatar(); false'>reset</a>
+&nbsp;&nbsp;&nbsp;
+<a href="/gopro.html" target="onTop" class="avatarButton white normalfont" >Unlock more Avatars</a>
+
 <br><br>
+<div class="introduction">
+  <p>Ghostpost is an anonymous chat app we built in three days while on the StartupBus from SF to Austin.</p>
+
+  <p>As you open GhostPost the first time, we randomly generate an avatar and username. You can reset your avatar in case you want to start over.</p>
+
+  <p>To make a new chatroom, write anything after ghostpost.io/, like this: ghostpost.io/PlayaHatersBall.</p>
+
+  <p>To create a new room while in a chat, use a hashtag in a message, like this #AwkwardCoworkers.</p>
+
+  <p>Try it out!</p>
+</div>

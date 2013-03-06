@@ -117,13 +117,27 @@ window.GhostPost =
     roomsRef = new Firebase "https://ghostpost.firebaseio.com/rooms"
     roomsRef.limit(10).on "child_added", (snapshot) ->
       room = snapshot.val()
+      room.messages = snapshot.numChildren()
+      console.log 'Room', room.name, 'messages', room.messages
       $("#roomsDiv").append HandlebarsTemplates['rooms/show']({ room })
+
+
+  countRooms: ->
+    allRoomsRef = new Firebase "https://ghostpost.firebaseio.com/"
+    allRoomsRef.on "child_added", (snapshot) ->
+      totalRooms = snapshot.numChildren()
+      $("#totalRooms").html totalRooms
+      console.log 'totalRooms', totalRooms
+
 
   resetAvatar: ->
       localStorage.removeItem("username")
       localStorage.removeItem("avatar_id")
       GhostPost.resetName = true
       GhostPost.initializeUser()
+      if $("#welcomeAvatar").length > 0
+        $("#welcomeAvatar").html HandlebarsTemplates['home/avatarLarge']({ GhostPost })
+
 
   welcomeAvatar: ->
     $("#welcomeAvatar").html HandlebarsTemplates['home/avatarLarge']({ GhostPost })
