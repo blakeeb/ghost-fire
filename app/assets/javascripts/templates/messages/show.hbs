@@ -2,6 +2,6 @@
   <img src="/assets/avatars/av{{message.avatar_id}}.png" class="avatar-small fL">
   <div class="messageText">
     <em>{{message.name}} <span class="message-time fR" data-time={{message.created_at}}>{{ message.time}}</span></em>
-    {{message.text}}
+    {{messageText message.text}}
   </div>
 </li>

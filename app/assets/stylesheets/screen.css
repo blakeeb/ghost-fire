@@ -444,3 +444,7 @@ ul.navright li {
 ul.navright li {
     font-size: 1.4em;
 }
+
+.messageText a {
+  color: #65A0F7;
+}
