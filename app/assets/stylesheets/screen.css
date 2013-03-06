@@ -486,4 +486,10 @@ ul.navright li {
 
 .messageText a {
   color: #65A0F7;
+  background: white;
 }
+
+li.Close a {
+    background: transparent;
+}
+
