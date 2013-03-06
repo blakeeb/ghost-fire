@@ -1,9 +1,8 @@
 class WelcomeController < ApplicationController
   def index
 
-    #commented out so that we can buidl the home page
-    #redirect_to '/startups-rock'
-    redirect_to '/welcome'
+    #commented out and redirecting / directly to room from routes.rb
+    #redirect_to '/welcome'
 
   end
 end
