@@ -144,6 +144,10 @@ nav {
     padding-bottom: 6px;
 }
 
+.mine {
+  background-color: rgba(255,255,255,0.1);
+}
+
 h3.list-title {
     margin: 0 0 10px 20px;
     color: #f2f2f2;

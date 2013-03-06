@@ -47,6 +47,7 @@ window.GhostPost =
         GhostPost.desktopNotify message
       $("#messagesDiv").append HandlebarsTemplates['messages/show']({ message })
       $('html, body').scrollTop $(document).height()
+      $('li[data-username=' + GhostPost.username + ']').addClass('mine')
 
   desktopNotify: (data) ->
     havePermission = window.webkitNotifications.checkPermission()
