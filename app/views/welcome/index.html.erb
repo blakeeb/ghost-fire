@@ -1,38 +1,14 @@
-<script>
-  $().ready(function() {
-    $('.party_time').click(function () {
-      $('.expand_it').show();
-    });
-  });
-</script>
-<style>
-  nav {
-    display: none !important;
-  }
-  .vimeo {
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    height: 90%;
-  }
-  .party_time {
-    position: absolute;
-    bottom:  20px;
-    left: 0;
-    z-index: 5000;;
-  }
-  .expand_it {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 500;
-    height: 100%;
-    top: 0px;
-    opacity: 0.8;
-    display: none;
-  }
-</style>
+List of Rooms:
+<div class="list">
+  <ul class="posts" id="roomsDiv"></ul>
+</div>
 
-<iframe class="vimeo" src="http://player.vimeo.com/video/61181693" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-<a href="#" class="party_time">Party Time!!!</a>
-<iframe class="expand_it"  src="/partybus" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+<script>
+  $(function() {
+    GhostPost.initializeUser();
+    GhostPost.listRooms();
+  });
+
+</script>
