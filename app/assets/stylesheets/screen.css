@@ -348,6 +348,37 @@ ul.soloShare {
 .cf:after { clear: both; }
 .cf { zoom: 1; }
 
+.cf Notification {
+  border: 1px dashed #60f7fc;
+  width: 95% !important;
+}
+
+ul.Notification {
+    border: 1px dashed #60f7fc;
+    width: 100%;
+    padding-top: 15px;
+}
+
+ul.Notification li {
+    float:left;
+    width: auto;
+}
+
+ul.Notification li {
+    float:left;
+    width: auto;
+}
+
+ul li.Close {
+    color: #60f7fc;
+    float:right !important;
+}
+
+.avatarNotification{
+    margin-top: -11px;
+    margin-right: 5px;
+}
+
 .posts {
   padding-bottom: 45px;
 }
@@ -383,10 +414,10 @@ ul.soloShare {
 .postbar input {
   margin-top: 10px;
   height: 27px;
-  width: 77%;
+  width: 94%;
   background-color: black;
   border: 2px solid grey;
-  padding-left: 10px;
+  padding: 0 2%;
   font-size: 1.5em;
   color: white;
 }
@@ -401,6 +432,14 @@ ul.soloShare {
   color: white;
   margin: 10px 15px;
   width: 76%;
+  float: left;
+}
+
+#avatarNotificationDiv div {
+  font-size: 1.6em;
+  color: white;
+  margin: 10px 0;
+  width: 100%;
   float: left;
 }
 

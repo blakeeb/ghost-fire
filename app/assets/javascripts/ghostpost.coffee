@@ -22,9 +22,15 @@ window.GhostPost =
       localStorage.username = GhostPost.username
       localStorage.avatar_id = GhostPost.avatar_id
 
-    # Display avatarname and image on the screen
-    $('.avatarName').html GhostPost.username
-    $('.avatarImage').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
+      # Display new Avatar Message and image on the screen
+      $("#avatarNotificationDiv").html HandlebarsTemplates['messages/avatarNotification']({ GhostPost })
+
+    # Commenting this out as we now append the new Ghostpost
+    $('#avatarName').html GhostPost.username
+    $('#avatarImage').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
+    $('#avatarNameSmall').html GhostPost.username
+    $('#avatarImageSmall').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
+    $('html, body').scrollTop $(document).height()
 
 
   getMessages: ->
@@ -35,10 +41,6 @@ window.GhostPost =
     console.log 'set(GhostPost.room', GhostPost.room
 
     GhostPost.joined_at = Date.now()
-
-    $('#avatarNameSmall').html GhostPost.username
-    $('#avatarImageSmall').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
-
 
     # When the user presses enter on the message input, write the message to firebase.
     $("#messageInput").keypress (e) ->
@@ -91,12 +93,19 @@ window.GhostPost =
       room = snapshot.val()
       $("#roomsDiv").append HandlebarsTemplates['rooms/show']({ room })
 
+  resetAvatar: ->
+      localStorage.removeItem("username")
+      localStorage.removeItem("avatar_id")
+      GhostPost.resetName = true
+      GhostPost.initializeUser()
+
+
 # Hashtag link processor helper
 Handlebars.registerHelper 'messageText', (text) ->
   if typeof text != 'string'
     text = text.string
   text = Handlebars.Utils.escapeExpression text
-  text = text.replace(///#([\w\d]+)\b///g, "<a href='http://ghostpost.io/$1'>#$1</a>")
+  text = text.replace(///\s#([\w\d]+)\b///g, "<a href='http://ghostpost.io/$1'>#$1</a>")
   return new Handlebars.SafeString(text);
 
 # Live update times on the page every minute
