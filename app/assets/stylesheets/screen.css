@@ -39,7 +39,7 @@ body {
 
 h1 {
     font-family: Oswald;
-    margin: 0;
+    margin: 0 0 20px 0;
     font-size: 2.8em;
     color: #808080;
 }
@@ -369,7 +369,7 @@ ul.soloShare {
 .postbar {
   width: 100%;
   position: fixed;
-  bottom: 0px;
+  bottom: 38px;
   z-index: 101;
   background-color: black;
   background: transparent url(/assets/nav.png) repeat-x 0 0;
@@ -403,6 +403,6 @@ ul.soloShare {
 
 .avatarButton {
   padding: 5px 15px;
-  border: 1px #ccc solid;
-  margin-top: 10px;
+  border-radius: 0.5em;
+  background: #65A0F7;
 }
