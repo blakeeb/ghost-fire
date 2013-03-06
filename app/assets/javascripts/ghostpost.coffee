@@ -45,11 +45,7 @@ window.GhostPost =
       message = snapshot.val()
       if (message.created_at > GhostPost.joined_at) && message.name != GhostPost.username
         GhostPost.desktopNotify message
-      $("<div/>")
-        .append($("<img/>").attr("src", '/assets/avatars/av' + message.avatar_id + '.png'))
-        .text(message.text)
-        .prepend($("<em/>").text(message.name))
-        .appendTo $("#messagesDiv")
+      $("#messagesDiv").append HandlebarsTemplates['messages/show']({ message })
       $(".posts")[0].scrollTop = $(".posts")[0].scrollHeight + 50
 
   desktopNotify: (data) ->

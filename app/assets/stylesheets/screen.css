@@ -151,8 +151,7 @@ h3.list-title {
 }
 
 .list li {
-    background: rgba(0,0,0,0.2);
-    padding: 10px 5%;
+    padding: 4px 5%;
     margin-bottom: 3px;
     float: left;
     width: 90%;
@@ -359,6 +358,7 @@ ul.soloShare {
   font-size: .8em;
   color: #bbb;
   font-style: normal;
+  margin-bottom: 3px;
 }
 
 .posts img {
@@ -381,7 +381,7 @@ ul.soloShare {
 .postbar input {
   margin-top: 10px;
   height: 27px;
-  width: 98%;
+  width: 90%;
   background-color: black;
   border: 2px solid grey;
   padding-left: 10px;
@@ -395,7 +395,8 @@ ul.soloShare {
 }
 
 #messagesDiv div {
-  font-size: 2em;
+  font-size: 1.6em;
   color: white;
-  margin: 10px 20px;
+  margin: 10px 15px;
+  float: left;
 }
