@@ -82,7 +82,7 @@ p {
 }
 
 span {
-    color: #65A0F7;
+/*    color: #65A0F7;*/
 }
 
 span.date {
@@ -415,6 +415,20 @@ ul li.Close {
   height: 50px;
 }
 
+.votes {
+  float: right;
+}
+.votes .btn {
+  opacity: 0.6
+}
+.votes .btn:hover {
+  opacity: 1
+}
+.votes img {
+  width: 30px;
+  height: 30px;
+}
+
 .postbar {
   bottom: 0px;
   width: 100%;
@@ -504,6 +518,17 @@ ul.navright li {
 
 ul.navright li {
     font-size: 1.4em;
+}
+
+.messageBody {
+  float: left;
+
+}
+.votes {
+  min-width: 100px;
+}
+.messageText a {
+  color: #65A0F7;
 }
 
 .unlock-link .messageText a {
