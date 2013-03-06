@@ -105,7 +105,8 @@ Handlebars.registerHelper 'messageText', (text) ->
   if typeof text != 'string'
     text = text.string
   text = Handlebars.Utils.escapeExpression text
-  text = text.replace(///\s#([\w\d]+)\b///g, "<a href='http://ghostpost.io/$1'>#$1</a>")
+  text = text.replace(///\s#([\w\d]+)\b///g, "<a target='_blank' href='http://ghostpost.io/$1'>#$1</a>")
+  text = text.replace(///^#([\w\d]+)\b///g, "<a target='_blank' href='http://ghostpost.io/$1'>#$1</a>")
   return new Handlebars.SafeString(text);
 
 # Live update times on the page every minute
