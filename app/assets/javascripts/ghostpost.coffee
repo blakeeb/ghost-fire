@@ -1,5 +1,7 @@
 window.GhostPost =
   start: ->
+    # Prevent offset scrolling on iOS
+    document.body.addEventListener 'touchmove',  (e) -> e.preventDefault()
     # Get a reference to the root of the chat data.
     messagesRef = new Firebase("https://ghostpost.firebaseio.com/rooms/" + GhostPost.room)
     GhostPost.joined_at = Date.now()
