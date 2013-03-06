@@ -56,9 +56,10 @@ window.GhostPost =
       message = snapshot.val()
       if (message.created_at > GhostPost.joined_at) && message.name != GhostPost.username && window.webkitNotifications
         GhostPost.desktopNotify message
-      $("#messagesDiv").append HandlebarsTemplates['messages/show']({ message })
-      $('html, body').scrollTop $(document).height()
-      $('li[data-username=' + GhostPost.username + ']').addClass('mine')
+      if message.text
+        $("#messagesDiv").append HandlebarsTemplates['messages/show']({ message })
+        $('html, body').scrollTop $(document).height()
+        $('li[data-username=' + GhostPost.username + ']').addClass('mine')
 
   desktopNotify: (data) ->
     havePermission = window.webkitNotifications.checkPermission()
