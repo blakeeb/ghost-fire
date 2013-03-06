@@ -214,7 +214,7 @@ img.avatar-small {
 .chat-entry {
     position: fixed;
     z-index: 105;
-    bottom: 0px;
+    bottom: 38px;
     background: #151515;
     width: 90%;
     padding: 10px 5%;
