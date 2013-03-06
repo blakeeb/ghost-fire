@@ -18,7 +18,7 @@ window.GhostPost =
       # create new avatar / image
       console.log 'Could not find localStorage - creating new user/avatar'
       GhostPost.username = adjectives[Math.floor(Math.random()*adjectives.length)] + nouns[Math.floor(Math.random()*nouns.length)]
-      GhostPost.avatar_id = Math.floor(Math.random()*25)
+      GhostPost.avatar_id = Math.floor(Math.random()*24) + 1
       localStorage.username = GhostPost.username
       localStorage.avatar_id = GhostPost.avatar_id
 
