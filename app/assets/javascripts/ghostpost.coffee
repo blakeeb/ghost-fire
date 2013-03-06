@@ -22,9 +22,16 @@ window.GhostPost =
       localStorage.username = GhostPost.username
       localStorage.avatar_id = GhostPost.avatar_id
 
-    # Display avatarname and image on the screen
+      # Display new Avatar Message and image on the screen
+      $("#avatarNotificationDiv").html HandlebarsTemplates['messages/avatarNotification']({ GhostPost })
+
+
+    # Commenting this out as we now append the new Ghostpost
     $('#avatarName').html GhostPost.username
     $('#avatarImage').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
+    $('#avatarNameSmall').html GhostPost.username
+    $('#avatarImageSmall').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
+    $('html, body').scrollTop $(document).height()
 
 
   getMessages: ->
@@ -35,10 +42,6 @@ window.GhostPost =
     console.log 'set(GhostPost.room', GhostPost.room
 
     GhostPost.joined_at = Date.now()
-
-    $('#avatarNameSmall').html GhostPost.username
-    $('#avatarImageSmall').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
-
 
     # When the user presses enter on the message input, write the message to firebase.
     $("#messageInput").keypress (e) ->
@@ -84,5 +87,11 @@ window.GhostPost =
     roomsRef.limit(25).on "child_added", (snapshot) ->
       room = snapshot.val()
       $("#roomsDiv").append HandlebarsTemplates['rooms/show']({ room })
+
+  resetAvatar: ->
+      localStorage.removeItem("username")
+      localStorage.removeItem("avatar_id")
+      GhostPost.resetName = true
+      GhostPost.initializeUser()
 
 

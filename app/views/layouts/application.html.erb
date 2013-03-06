@@ -26,7 +26,9 @@
 <nav>
   <a href="/"><img src="/assets/logo.png" id="logo"></a>
   <ul class="navright">
-    <li><a href="?reset=true" class="avatarButton">reset</a></li>
+    <li>
+      <a class="avatarButton" href="javascript://" onclick='GhostPost.resetAvatar(); false'>reset</a>
+    </li>
     <li id="avatarName"></li>
     <li><img src="" id="avatarImageSmall"></li>
   </ul>
@@ -36,16 +38,6 @@
 </div>-->
 
 <div class="main">
-
-  <div class="avatar cf">
-    <h3><span>today you are</span></h3>
-    <img src="" id="avatarImage">
-    <h1 id="avatarName"></h1>
-    <br>
-    <h3>
-    <a href="?reset=true" class="avatarButton">reset</a>
-    </h3>
-  </div>
 
 <%= yield %>
 
