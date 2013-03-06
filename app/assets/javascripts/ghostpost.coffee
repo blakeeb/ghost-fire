@@ -36,14 +36,17 @@ window.GhostPost =
     if (localStorage.username and localStorage.avatar_id) and (!GhostPost.resetName)
       GhostPost.username = localStorage.username
       GhostPost.avatar_id = localStorage.avatar_id
+      GhostPost.avatar_url = localStorage.avatar_url
       console.log 'User localStorage acknolwedged - reusing old avatar ', GhostPost.username, GhostPost.avatar_id
     else
       # create new avatar / image
       console.log 'Could not find localStorage - creating new user/avatar'
       GhostPost.username = adjectives[Math.floor(Math.random()*adjectives.length)] + nouns[Math.floor(Math.random()*nouns.length)]
       GhostPost.avatar_id = Math.floor(Math.random()*24) + 1
+      GhostPost.avatar_url = '/assets/avatars/av' + GhostPost.avatar_id + '.png'
       localStorage.username = GhostPost.username
       localStorage.avatar_id = GhostPost.avatar_id
+      localStorage.avatar_url = GhostPost.avatar_url
 
       # Display new Avatar Message and image on the screen
       $("#avatarNotificationDiv").html HandlebarsTemplates['messages/avatarNotification']({ GhostPost })
@@ -114,7 +117,7 @@ window.GhostPost =
 
   listRooms: ->
     roomsRef = new Firebase "https://ghostpost.firebaseio.com/rooms"
-    roomsRef.limit(25).on "child_added", (snapshot) ->
+    roomsRef.limit(10).on "child_added", (snapshot) ->
       room = snapshot.val()
       $("#roomsDiv").append HandlebarsTemplates['rooms/show']({ room })
 
@@ -123,6 +126,9 @@ window.GhostPost =
       localStorage.removeItem("avatar_id")
       GhostPost.resetName = true
       GhostPost.initializeUser()
+
+  welcomeAvatar: ->
+    $("#welcomeAvatar").html HandlebarsTemplates['home/avatarLarge']({ GhostPost })
 
 
 # Hashtag link processor helper

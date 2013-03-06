@@ -427,6 +427,14 @@ ul li.Close {
   width: 100px;
 }
 
+#roomsDiv div {
+  font-size: 1.6em;
+  color: white;
+  margin: 0px 0px;
+  width: 100%;
+  float: left;
+}
+
 #messagesDiv div {
   font-size: 1.6em;
   color: white;
