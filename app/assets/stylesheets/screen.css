@@ -449,7 +449,7 @@ ul li.Close {
   background: #65A0F7;
 }
 
-#avatarNameSmall, #avatarImageMini {
+#avatarName, #avatarImageMini {
     float: left;
     margin-top: 18px;
 }
