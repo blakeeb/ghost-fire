@@ -360,6 +360,10 @@ ul.soloShare {
   margin-bottom: 3px;
 }
 
+.posts .message-time {
+  color: #555;
+}
+
 .posts img {
   width: 50px;
   height: 50px;
