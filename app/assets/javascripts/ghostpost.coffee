@@ -111,5 +111,4 @@ timeResetInterval = ->
     time = span.data('time')
     span.text(humaneDate(new Date(time)))
 setInterval timeResetInterval, 60*1000
->>>>>>> 7a5e8ba9134f21a63425f3fb120c892adc3f8b46
 
