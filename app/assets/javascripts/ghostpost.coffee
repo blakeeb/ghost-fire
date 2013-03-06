@@ -58,14 +58,12 @@ window.GhostPost =
     $('#avatarImageSmall').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
     $('html, body').scrollTop $(document).height()
 
-  postMessage: fnThrottle 3000, ->
+  postMessage: fnThrottle 750, ->
     name = $("#nameInput").val()
     text = $("#messageInput").val()
     if text
       if text.length > 200
           alert 'Whoa there! Max message length is around 140.9 chars.'
-          $("#messageInput").val ""
-          $("#messageInput").blur
       else
         @messagesRef.push
           name: GhostPost.username
@@ -100,7 +98,7 @@ window.GhostPost =
         message.time = humaneDate(new Date(message.created_at))
         $("#messagesDiv").append HandlebarsTemplates['messages/show']({ message })
         $('html, body').scrollTop $(document).height()
-        $('li[data-username=' + GhostPost.username + ']').addClass('mine')
+        $('li[data-username="' + GhostPost.username + '"]').addClass('mine')
 
   desktopNotify: (data) ->
     havePermission = window.webkitNotifications.checkPermission()
