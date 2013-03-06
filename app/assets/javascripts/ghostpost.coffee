@@ -23,8 +23,8 @@ window.GhostPost =
       localStorage.avatar_id = GhostPost.avatar_id
 
     # Display avatarname and image on the screen
-    $('#avatarName').html GhostPost.username
-    $('#avatarImage').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
+    $('.avatarName').html GhostPost.username
+    $('.avatarImage').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
 
 
   getMessages: ->
@@ -67,6 +67,7 @@ window.GhostPost =
       if (message.created_at > GhostPost.joined_at) && message.name != GhostPost.username && window.webkitNotifications
         GhostPost.desktopNotify message
       if message.text
+        message.time = humaneDate(new Date(message.created_at))
         $("#messagesDiv").append HandlebarsTemplates['messages/show']({ message })
         $('html, body').scrollTop $(document).height()
         $('li[data-username=' + GhostPost.username + ']').addClass('mine')
@@ -90,4 +91,20 @@ window.GhostPost =
       room = snapshot.val()
       $("#roomsDiv").append HandlebarsTemplates['rooms/show']({ room })
 
+# Hashtag link processor helper
+Handlebars.registerHelper 'messageText', (text) ->
+  if typeof text != 'string'
+    text = text.string
+  text = Handlebars.Utils.escapeExpression text
+  text = text.replace(///#([\w\d]+)\b///g, "<a href='http://ghostpost.io/$1'>#$1</a>")
+  return new Handlebars.SafeString(text);
+
+# Live update times on the page every minute
+timeResetInterval = ->
+  times = $('.message-time')
+  for span in times
+    span = $(span)
+    time = span.data('time')
+    span.text(humaneDate(new Date(time)))
+setInterval timeResetInterval, 60*1000
 
