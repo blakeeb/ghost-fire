@@ -46,7 +46,7 @@ window.GhostPost =
       if (message.created_at > GhostPost.joined_at) && message.name != GhostPost.username
         GhostPost.desktopNotify message
       $("#messagesDiv").append HandlebarsTemplates['messages/show']({ message })
-      $(".posts")[0].scrollTop = $(".posts")[0].scrollHeight + 50
+      $('html, body').scrollTop $(document).height()
 
   desktopNotify: (data) ->
     havePermission = window.webkitNotifications.checkPermission()
