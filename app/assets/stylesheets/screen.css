@@ -141,7 +141,6 @@ nav {
 
 .list {
     color: #B3B3B3;
-    padding-bottom: 100px;
 }
 
 .mine {
@@ -367,6 +366,7 @@ ul.soloShare {
 }
 
 .postbar {
+  bottom: 0px;
   width: 100%;
   position: fixed;
   z-index: 101;
