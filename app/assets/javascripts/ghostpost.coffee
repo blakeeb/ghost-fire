@@ -107,6 +107,10 @@ window.GhostPost =
       attachVotingHandlers elt
 
     @messagesRef.limit(30).on "child_added", (snapshot) ->
+      # For some reason when creating rooms sometimes we get the name here
+      if typeof snapshot.val() == "string"
+        console.log("String returned when message expected")
+        return 
       message = prepSnapshotForRender(snapshot)
       votes[message.id] = false
       if (message.created_at > GhostPost.joined_at) && message.name != GhostPost.username && window.webkitNotifications
