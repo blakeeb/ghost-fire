@@ -397,6 +397,12 @@ ul.soloShare {
   font-size: 1.6em;
   color: white;
   margin: 10px 15px;
-  width: 80%;
+  width: 76%;
   float: left;
+}
+
+.avatarButton {
+  padding: 5px 15px;
+  border: 1px #ccc solid;
+  margin-top: 10px;
 }
