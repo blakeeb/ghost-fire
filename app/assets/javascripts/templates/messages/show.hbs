@@ -1,7 +1,17 @@
-<li class="cf" data-username="{{message.name}}">
+<li id="{{message.id}}"class="message cf" data-username="{{message.name}}">
   <img src="/assets/avatars/av{{message.avatar_id}}.png" class="avatar-small fL">
   <div class="messageText">
-    <em>{{message.name}} <span class="message-time fR" data-time={{message.created_at}}>{{ message.time}}</span></em>
-    {{messageText message.text}}
+    <em>{{message.name}} 
+      <span class="message-time fR" data-time={{message.created_at}}>{{ message.time}}</span>
+    </em>
+    <span class='messageBody'>
+      {{messageText message.text}}
+    </span>
+    <span class="votes">
+      <a class="btn downvote" href="javascript://" data-id={{message.id}}><img src="assets/boo.png"></a>
+      <a class="btn upvote" href="javascript://" data-id={{message.id}}><img src="assets/yay.png"></a>
+      {{message.score}}
+    </span>
+    
   </div>
 </li>

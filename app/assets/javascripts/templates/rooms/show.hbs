@@ -1,9 +1,14 @@
 <li class="cf">
-  <em><a href="/{{room.name}}">
-    {{#if room.name }}
-      {{room.name}}
-    {{else}}
-      Anonymous Room!
-    {{/if}}
-    </a></em>
+  <div class="messageText">
+    <em>
+    <a href="/{{room.name}}">
+      {{#if room.name }}
+        {{room.name}}
+      {{else}}
+        Anonymous Room!
+      {{/if}}
+    </a>
+    <span class="message-time fR" data-time={{message.created_at}}>{{ message.time}}</span></em>
+
+  </div>
 </li>
