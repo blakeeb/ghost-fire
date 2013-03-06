@@ -36,14 +36,14 @@ window.GhostPost =
             avatar_id: GhostPost.avatar_id
             text: text
             created_at: Date.now()
-
-        window.webkitNotifications.requestPermission() unless window.webkitNotifications.checkPermission() == 0
+        if window.webkitNotifications
+          window.webkitNotifications.requestPermission() unless window.webkitNotifications.checkPermission() == 0
         $("#messageInput").val ""
 
     # Add a callback that is triggered for each chat message.
     messagesRef.limit(30).on "child_added", (snapshot) ->
       message = snapshot.val()
-      if (message.created_at > GhostPost.joined_at) && message.name != GhostPost.username
+      if (message.created_at > GhostPost.joined_at) && message.name != GhostPost.username && window.webkitNotifications
         GhostPost.desktopNotify message
       $("#messagesDiv").append HandlebarsTemplates['messages/show']({ message })
       $('html, body').scrollTop $(document).height()
