@@ -122,7 +122,6 @@ window.GhostPost =
       GhostPost.resetName = true
       GhostPost.initializeUser()
 
-
 # Hashtag link processor helper
 Handlebars.registerHelper 'messageText', (text) ->
   if typeof text != 'string'
