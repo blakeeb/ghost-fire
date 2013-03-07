@@ -165,7 +165,6 @@ window.GhostPost =
 
 # Vote handling
 messageSnapshots = {}
-debugger
 
 vote = (elt, value) ->
   id = elt.data('id')
