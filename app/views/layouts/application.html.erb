@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Anonymous Chat by GhostPost.io</title>
+  <title data-roomId="<%= params[:id] %>"><%= params[:id] %> on GhostPost.io</title>
   <script src="https://cdn.firebase.com/v0/firebase.js"></script>
   <meta content="yes" name="apple-mobile-web-app-capable" />
   <meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport" />
@@ -21,14 +21,27 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
-
   <!-- Twitter Button -->
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></script>
+  <!-- Facebook Send -->
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=173530556129463";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
 </head>
 <body>
+<div id="fb-root"></div>
 <nav>
+  <div id='share-label'>Invite friends:</div>
   <div id="twitter-share">
     <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ghostpost.io/<%= params[:id]%>" data-lang="en" data-via="GhostPostApp" data-counturl="http://ghostpost.io" data-text="Laughing my ass off chatting in"></a>
+  </div>
+  <div id="facebook">
+    <a id="facebook-login" href="javascript://">Login</a>
+    <div id="facebook-share" class="fb-send" data-href="http://ghostpost.io/<%= params[:id] %>" data-font="lucida grande"></div>
   </div>
   <a href="/"><img src="/assets/logo.png" id="logo"></a>
   <ul class="navright">

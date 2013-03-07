@@ -148,3 +148,26 @@ timeResetInterval = ->
     span.text(humaneDate(new Date(time)))
 setInterval timeResetInterval, 60*1000
 
+
+chatRef = new Firebase('https://ghostpost.firebaseio.com');
+authClient = new FirebaseAuthClient chatRef, (error, user) ->
+  console.log "CALLBACK LOGIN: " + user
+  if error
+    # an error occurred while attempting login
+    console.log error
+  else if user
+    # user authenticated with Firebase
+    console.log 'User ID: ' + user.id + ', Provider: ' + user.provider
+    $('body').data 'user-id', user.id
+    $('#facebook-login').hide();
+    $('#facebook-share').show();
+  else
+    # user is logged out
+
+# Facebook
+$(document).ready ->
+  $('#facebook-login').click ->
+    authClient.login 'facebook', 
+      rememberMe: true
+      scope: 'email'
+    
