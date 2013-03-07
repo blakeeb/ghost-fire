@@ -21,13 +21,16 @@ fnThrottle = (wait, func) ->
       alert("You have been throttled.")
     return result
 
+
 window.GhostPost =
   start: ->
+
     # Get a reference to the root of the chat data.
     @messagesRef = new Firebase("https://ghostpost.firebaseio.com/rooms/" + GhostPost.room)
     GhostPost.joined_at = Date.now()
 
   initializeUser: ->
+
     # onboard user - either create new or reuse old avatar.
 
     adjectives = ['Silly','Fuzzy','Crusty','Evil','Mad','Worst','Saintly','Wild','Wildest','Crabby','Crabbiest','Simple','Sadistic','Troubled','Ecstatic','Janky','Loopy','Snarky','Healthy','Tasty','Tricky','Sweetest','Fair','Fast','Scrappy','Shallow','Hungry','Moaning','Modern','Icy','Proud','Mr.','Mrs.','Stingy','Tall','Large','Little','Big','Frantic','Petite','Prickly','Jealous','Energetic','Wicked','Wet','Witty','Biggie','Smokey','Interesting','Funky']
@@ -94,7 +97,12 @@ window.GhostPost =
       if message.text
         message.time = humaneDate(new Date(message.created_at))
         $("#messagesDiv").append HandlebarsTemplates['messages/show']({ message })
-        $('html, body').scrollTop $(document).height()
+        #Check if the user is idle - hasn't scrolled in x seconds
+        if $(document).scrollTop()  > $(document).height() - ( 2* $(window).height() )
+          console.log "scrolling because scrolltop ", $(document).scrollTop(), "> document.height - 2 * window.height", $(document).height() - ( 2* $(window).height() )
+          $('html, body').scrollTop $(document).height()
+        else
+          console.log "NOT scrolling because scrolltop ", $(document).scrollTop(), "document.height", $(document).height(), "2 * window.height ", ( 2* $(window).height() )
         $('li[data-username="' + GhostPost.username + '"]').addClass('mine')
 
   desktopNotify: (data) ->
