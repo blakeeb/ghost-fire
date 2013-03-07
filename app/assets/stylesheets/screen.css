@@ -115,6 +115,11 @@ nav {
     border-radius: 1em;
 }
 
+#twitter-share {
+  float: left;
+  margin-left: 20px;
+}
+
 /* main */
 
 .main {
