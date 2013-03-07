@@ -105,6 +105,7 @@ window.GhostPost =
       elt = $(HandlebarsTemplates['messages/show']({ message }))
       $('#' + message.id).replaceWith(elt)
       attachVotingHandlers elt
+      $('li[data-username=' + GhostPost.username + ']').addClass('mine')
 
     @messagesRef.limit(30).on "child_added", (snapshot) ->
       # For some reason when creating rooms sometimes we get the name here

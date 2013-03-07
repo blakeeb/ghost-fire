@@ -417,6 +417,7 @@ ul li.Close {
 
 .votes {
   float: right;
+  
 }
 .votes .btn {
   opacity: 0.6
@@ -525,7 +526,7 @@ ul.navright li {
 
 }
 .votes {
-  min-width: 100px;
+  min-width: 50px;
 }
 .messageText a {
   color: #65A0F7;
