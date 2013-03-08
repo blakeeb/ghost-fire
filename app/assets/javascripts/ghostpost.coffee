@@ -34,7 +34,7 @@ window.GhostPost =
     # onboard user - either create new or reuse old avatar.
 
     adjectives = ['Silly','Fuzzy','Crusty','Fat','Evil','Mad','Madest','Fat','Fatest','Dumb','Dumest','Worst','Saintly','Perverse','Wild','Wildest','Smelly','Smelliest','Crabby','Crabbiest','Annoying','Simple','Sadistic','Troubled','Ecstatic','Janky','Loopy','Snarky','Healthy','Tasty','Tricky','Ugly','Dirty','Terrible','Fugly','Crappy','Sweetest','Rude','Fair','Stoopid','Fast','Scrappy','Shallow','Average','Arrogant','Ashamed','Dizzy','Dull','Sarcastic','Hungry','Moaning','Modern','Icy','Proud','Mr.','Mrs.','Stingy','Smal','Tall','Large','Little','Big','Frantic','Petite','Prickly','Jealous','Ordinary','Obnoxious','Energetic','Wicked','Wet','Witty','Biggie','Smokey','Interesting','Funky']
-    nouns = ['Hipster','Soap','Spork','Bunny','Jock','Foot','Elbow','Cat','Hippopotamus','Sloth','Mormon','Child','Atheist','Pope','Whore','Platypus','Iguana','Walrus','Dolphin','Blunderbuss','Fritatta','Flapjack','Dumbo','Meanie','Crab','Dungeon','Temple','Ninja','Wombat','Pirate','Motel','Buccaneer','Didgeridoo','Girdle','Manscape','Weasel','Chimpanzee','Poltergeist','Boar','Pilot','Taco','Burrito','Flauta','Hamburger','Cheeseburger','Pancake','Kangaroo','Dog','Feline','Troll','Hacker','Taint','Manchild','Elephant','Asshat','Ass','Donkey','Horse','Cow','Duck','Pig','Giraffe','Lion','Book','Phone','Desk','Dentist','Doctor','Comedian','CEO','Startup','Bus','Car','Spork','T-Rex','Dino','President','Lop','Mop','Flipflop','Booger','Name','Dingo','Toe Jam','Wafer','Sasquatch','Lampshade','Monster','Wolfboy','Raccoon','Oatmeal','Muffin','Hoarder','Hipster','Melon','Goat','Sweatervest','Horsemeat','Centaur','Meatloaf','Lasagna','Magician','Samurai','Lemur','Empanada','Goatboy','Cat Lady','Armpit','Delivery','Pill','Handbag','Mitten','Pimp Cup','Redneck','Engrish','Cabbie','Sushi','Celebutante','LoveLetter','Nymph']
+    nouns = ['Hipster','Soap','Spork','Bunny','Jock','Foot','Elbow','Cat','Hippopotamus','Sloth','Mormon','Child','Atheist','Pope','Whore','Platypus','Iguana','Walrus','Dolphin','Blunderbuss','Fritatta','Flapjack','Dumbo','Meanie','Crab','Dungeon','Temple','Ninja','Wombat','Pirate','Motel','Buccaneer','Didgeridoo','Girdle','Manscape','Weasel','Chimpanzee','Poltergeist','Boar','Pilot','Taco','Burrito','Flauta','Hamburger','Cheeseburger','Pancake','Kangaroo','Dog','Feline','Troll','Hacker','Taint','Manchild','Elephant','Asshat','Ass','Donkey','Horse','Cow','Duck','Pig','Giraffe','Lion','Book','Phone','Desk','Dentist','Doctor','Comedian','CEO','Startup','Bus','Car','Spork','T-Rex','Dino','President','Lop','Mop','Flipflop','Booger','Name','Dingo','Toe Jam','Wafer','Sasquatch','Lampshade','Monster','Wolfboy','Raccoon','Oatmeal','Muffin','Hoarder','Hipster','Melon','Goat','Sweatervest','Horsemeat','Centaur','Meatloaf','Lasagna','Magician','Samurai','Lemur','Empanada','Goatboy','Cat Lady','Armpit','Delivery','Pill','Handbag','Mitten','Pimp Cup','Redneck','Engrish','Cabbie','Sushi','Celebutante','LoveLetter','Nymph', 'Scoble','McClure','Zuckerberg']
 
     if (localStorage.username and localStorage.avatar_id) and (!GhostPost.resetName)
       GhostPost.username = localStorage.username
@@ -81,7 +81,6 @@ window.GhostPost =
     @messagesRef = new Firebase("https://ghostpost.firebaseio.com/rooms/" + GhostPost.room)
 
     @messagesRef.child('name').set(GhostPost.room)
-    console.log 'set(GhostPost.room', GhostPost.room
 
     GhostPost.joined_at = Date.now()
 
@@ -99,7 +98,6 @@ window.GhostPost =
         $("#messagesDiv").append HandlebarsTemplates['messages/show']({ message })
         #Check if the user is idle - hasn't scrolled in x seconds
         if $(document).scrollTop()  > $(document).height() - ( 2* $(window).height() )
-          console.log "scrolling because scrolltop ", $(document).scrollTop(), "> document.height - 2 * window.height", $(document).height() - ( 2* $(window).height() )
           $('html, body').scrollTop $(document).height()
         else
           console.log "NOT scrolling because scrolltop ", $(document).scrollTop(), "document.height", $(document).height(), "2 * window.height ", ( 2* $(window).height() )
@@ -109,7 +107,7 @@ window.GhostPost =
     havePermission = window.webkitNotifications.checkPermission()
     if havePermission is 0
       # 0 is PERMISSION_ALLOWED
-      notification = window.webkitNotifications.createNotification("http://simple.ghostpost.io/assets/avatars" + GhostPost.avatar_id + '.png', "Ghost by " + data.name, data.text)
+      notification = window.webkitNotifications.createNotification("http://ghostpost.io/assets/avatars/av" + GhostPost.avatar_id + '.png', "Ghost by " + data.name, data.text)
 #      notification.onclick = ->
 #        #window.open "http://stackoverflow.com/a/13328397/1269037"
 #        notification.close()
