@@ -168,9 +168,8 @@ h3.list-title {
 }
 
 .list li {
-    padding: 4px 2%;
+    padding: 0px 15px;
     margin-bottom: 3px;
-    width: 96%;
 }
 
 .list li a:hover, .list li a:active {
@@ -443,9 +442,8 @@ ul li.Close {
 #messagesDiv div {
   font-size: 1.6em;
   color: white;
-  margin: 10px 15px;
-  width: 76%;
-  float: left;
+  margin: 5px 15px;
+  padding-left: 50px;
 }
 
 #avatarNotificationDiv div {
