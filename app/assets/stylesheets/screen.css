@@ -509,3 +509,33 @@ li.Close a {
   color: #60f7fc;
   margin-left: 10px;
 }
+
+.welcome {
+  display: none;
+}
+
+.welcome {
+  display: none;
+  position: fixed;
+  background-color: rgba(0,0,0,0.85);
+  width: 100%;
+  top: 0px;
+  padding: 5%;
+  font-size: 2em;
+  z-index: 600;
+}
+
+.welcome p {
+  font-size: 1em;
+}
+
+.welcome button {
+  padding: 20px 0px;
+  border-radius: 0.30em;
+  background: #65A0F7;
+  border: 0;
+  color: white;
+  font-size: 1em;
+  width: 80%;
+  margin-top:20px;
+}

@@ -24,12 +24,21 @@ fnThrottle = (wait, func) ->
 
 window.GhostPost =
   start: ->
-
     # Get a reference to the root of the chat data.
     @messagesRef = new Firebase("https://ghostpost.firebaseio.com/rooms/" + GhostPost.room)
     GhostPost.joined_at = Date.now()
 
+  hideWelcomeScreen: ->
+    localStorage.hasVisited = 'true'
+    $('.welcome').hide()
+    $('.postbar').show()
+
   initializeUser: ->
+    if GhostPost.isNewUser()
+      $('.welcome').show()
+      $('.postbar').hide()
+      $('.welcome button').bind 'click', @hideWelcomeScreen
+      $('.welcome button').bind 'ontouchstart', @hideWelcomeScreen
 
     # onboard user - either create new or reuse old avatar.
 
@@ -121,6 +130,9 @@ window.GhostPost =
     roomsRef.limit(25).on "child_added", (snapshot) ->
       room = snapshot.val()
       $("#roomsDiv").append HandlebarsTemplates['rooms/show']({ room })
+
+  isNewUser: ->
+    localStorage.hasVisited != 'true'
 
   resetAvatar: ->
       localStorage.removeItem("username")
