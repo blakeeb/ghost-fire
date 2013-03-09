@@ -71,7 +71,7 @@ window.GhostPost =
     name = $("#nameInput").val()
     text = $("#messageInput").val()
     if text
-      if text.length > 200
+      if text.length > 300
           alert 'Whoa there! Max message length is around 140.9 chars.'
       else
         @messagesRef.push
