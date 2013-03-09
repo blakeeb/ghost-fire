@@ -40,6 +40,11 @@ window.GhostPost =
       $('.welcome button').bind 'click', @hideWelcomeScreen
       $('.welcome button').bind 'ontouchstart', @hideWelcomeScreen
 
+    $('#messageInput').bind 'focus', ->
+      $('nav').hide()
+    $('#messageInput').bind 'blur', ->
+      $('nav').show()
+
     # onboard user - either create new or reuse old avatar.
 
     adjectives = ['Silly','Fuzzy','Crusty','Fat','Evil','Mad','Madest','Fat','Fatest','Dumb','Dumest','Worst','Saintly','Perverse','Wild','Wildest','Smelly','Smelliest','Crabby','Crabbiest','Annoying','Simple','Sadistic','Troubled','Ecstatic','Janky','Loopy','Snarky','Healthy','Tasty','Tricky','Ugly','Dirty','Terrible','Fugly','Crappy','Sweetest','Rude','Fair','Stoopid','Fast','Scrappy','Shallow','Average','Arrogant','Ashamed','Dizzy','Dull','Sarcastic','Hungry','Moaning','Modern','Icy','Proud','Mr.','Mrs.','Stingy','Smal','Tall','Large','Little','Big','Frantic','Petite','Prickly','Jealous','Ordinary','Obnoxious','Energetic','Wicked','Wet','Witty','Biggie','Smokey','Interesting','Funky']
