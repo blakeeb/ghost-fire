@@ -48,10 +48,8 @@ window.GhostPost =
     if (localStorage.username and localStorage.avatar_id) and (!GhostPost.resetName)
       GhostPost.username = localStorage.username
       GhostPost.avatar_id = localStorage.avatar_id
-      console.log 'User localStorage acknolwedged - reusing old avatar ', GhostPost.username, GhostPost.avatar_id
     else
       # create new avatar / image
-      console.log 'Could not find localStorage - creating new user/avatar'
       GhostPost.username = adjectives[Math.floor(Math.random()*adjectives.length)] + nouns[Math.floor(Math.random()*nouns.length)]
       GhostPost.avatar_id = Math.floor(Math.random()*24) + 1
       localStorage.username = GhostPost.username
@@ -108,8 +106,6 @@ window.GhostPost =
         #Check if the user is idle - hasn't scrolled in x seconds
         if $(document).scrollTop()  > $(document).height() - ( 2* $(window).height() )
           $('html, body').scrollTop $(document).height()
-        else
-          console.log "NOT scrolling because scrolltop ", $(document).scrollTop(), "document.height", $(document).height(), "2 * window.height ", ( 2* $(window).height() )
         $('li[data-username="' + GhostPost.username + '"]').addClass('mine')
 
   desktopNotify: (data) ->
@@ -161,13 +157,11 @@ setInterval timeResetInterval, 60*1000
 
 chatRef = new Firebase('https://ghostpost.firebaseio.com');
 authClient = new FirebaseAuthClient chatRef, (error, user) ->
-  console.log "CALLBACK LOGIN: " + user
   if error
     # an error occurred while attempting login
     console.log error
   else if user
     # user authenticated with Firebase
-    console.log 'User ID: ' + user.id + ', Provider: ' + user.provider
     $('body').data 'user-id', user.id
     $('#facebook-login').hide();
     $('#facebook-share').show();
