@@ -21,6 +21,19 @@ fnThrottle = (wait, func) ->
       alert("You have been throttled.")
     return result
 
+isMobile =
+  Android: ->
+    navigator.userAgent.match /Android/i
+  BlackBerry: ->
+    navigator.userAgent.match /BlackBerry/i
+  iOS: ->
+    navigator.userAgent.match /iPhone|iPad|iPod/i
+  Opera: ->
+    navigator.userAgent.match /Opera Mini/i
+  Windows: ->
+    navigator.userAgent.match /IEMobile/i
+  any: ->
+    isMobile.Android() or isMobile.BlackBerry() or isMobile.iOS() or isMobile.Opera() or isMobile.Windows()
 
 window.GhostPost =
   start: ->
@@ -40,10 +53,11 @@ window.GhostPost =
       $('.welcome button').bind 'click', @hideWelcomeScreen
       $('.welcome button').bind 'ontouchstart', @hideWelcomeScreen
 
-    $('#messageInput').bind 'focus', ->
-      $('nav').hide()
-    $('#messageInput').bind 'blur', ->
-      $('nav').show()
+    if isMobile.any()
+      $('#messageInput').bind 'focus', ->
+        $('nav').hide()
+      $('#messageInput').bind 'blur', ->
+        $('nav').show()
 
     # onboard user - either create new or reuse old avatar.
 
@@ -156,24 +170,24 @@ timeResetInterval = ->
     span.text(humaneDate(new Date(time)))
 setInterval timeResetInterval, 60*1000
 
-
-chatRef = new Firebase('https://ghostpost.firebaseio.com');
-authClient = new FirebaseAuthClient chatRef, (error, user) ->
-  if error
-    # an error occurred while attempting login
-    console.log error
-  else if user
-    # user authenticated with Firebase
-    $('body').data 'user-id', user.id
-    $('#facebook-login').hide();
-    $('#facebook-share').show();
-  else
-    # user is logged out
-
-# Facebook
-$(document).ready ->
-  $('#facebook-login').click ->
-    authClient.login 'facebook', 
-      rememberMe: true
-      scope: 'email'
+# TODO: Facebook Auth
+#chatRef = new Firebase('https://ghostpost.firebaseio.com');
+#authClient = new FirebaseAuthClient chatRef, (error, user) ->
+#if error
+#    # an error occurred while attempting login
+#    console.log error
+#  else if user
+#    # user authenticated with Firebase
+#    $('body').data 'user-id', user.id
+#    $('#facebook-login').hide();
+#    $('#facebook-share').show();
+#  else
+#    # user is logged out
+#
+## Facebook
+#$(document).ready ->
+#  $('#facebook-login').click ->
+#    authClient.login 'facebook',
+#      rememberMe: true
+#      scope: 'email'
     
