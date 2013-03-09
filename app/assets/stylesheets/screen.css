@@ -523,6 +523,7 @@ li.Close a {
   padding: 5%;
   font-size: 2em;
   z-index: 600;
+  height: 100%;
 }
 
 .welcome p {
@@ -538,4 +539,8 @@ li.Close a {
   font-size: 1em;
   width: 80%;
   margin-top:20px;
+}
+
+.details {
+  font-size: 0.7em;
 }
