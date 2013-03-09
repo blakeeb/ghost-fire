@@ -35,15 +35,10 @@
 <body>
 <div id="fb-root"></div>
 <nav>
-  <div id='share-label'>Invite friends:</div>
   <div id="twitter-share">
-    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-counturl="http://ghostpost.io/<%= params[:id] %>" data-text="Laughing my ass off in ghostpost.io/<%= params[:id] %>. @EliasBiz, put @GhostPostApp in @TheStartupBus finals #sxsw"></a>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-counturl="http://ghostpost.io/<%= params[:id] %>" data-text="Cracking up in ghostpost.io/<%= params[:id] %>. @DaveMcClure @Scobleizer vote @GhostPostApp in @TheStartupBus finals! #sxsw"></a>
   </div>
-  <div id="facebook">
-    <a id="facebook-login" href="javascript://">Facebook Login</a>
-    <div id="facebook-share" style="display: none;" class="fb-send" data-href="http://ghostpost.io/<%= params[:id] %>" data-font="lucida grande"></div>
-  </div>
-  <a href="/"><img src="/assets/logo.png" id="logo"></a>
+  <a href="/" class="logo"><img src="/assets/logo.png" id="logo"></a>
   <ul class="navright">
     <li>
       <a class="avatarButton" href="javascript://" onclick='GhostPost.resetAvatar(); false'>reset</a>

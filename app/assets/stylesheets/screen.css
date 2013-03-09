@@ -544,3 +544,15 @@ li.Close a {
 .details {
   font-size: 0.7em;
 }
+
+.logo {
+  display: none;
+}
+
+@media only screen and (min-width : 600px) {
+  .logo {
+    display: block;
+  }
+}
+
+
