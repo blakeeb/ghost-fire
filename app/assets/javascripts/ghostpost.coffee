@@ -58,6 +58,9 @@ window.GhostPost =
         $('nav').hide()
       $('#messageInput').bind 'blur', ->
         $('nav').show()
+        if isMobile.iOS()
+          if $('#messageInput').val() != ''
+            GhostPost.postMessage()
 
     # onboard user - either create new or reuse old avatar.
 
@@ -111,9 +114,12 @@ window.GhostPost =
     GhostPost.joined_at = Date.now()
 
     # When the user presses enter on the message input, write the message to firebase.
-    $("#messageInput").keypress (e) ->
-      if e.keyCode is 13
-        self.postMessage()
+    $("#messageForm").submit (e) ->
+      self.postMessage()
+      e.preventDefault()
+
+    $("#messageForm").blur (e) ->
+
     # Add a callback that is triggered for each chat message.
     @messagesRef.limit(30).on "child_added", (snapshot) ->
       message = snapshot.val()
