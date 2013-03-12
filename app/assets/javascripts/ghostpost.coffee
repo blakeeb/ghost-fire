@@ -78,7 +78,9 @@ window.GhostPost =
       localStorage.avatar_id = GhostPost.avatar_id
 
       # Display new Avatar Message and image on the screen
-      $("#avatarNotificationDiv").html HandlebarsTemplates['messages/avatarNotification']({ GhostPost })
+      $("#avatarNotificationDiv").html HandlebarsTemplates['messages/avatarNotification']
+        username: GhostPost.please_have_some_respect_dont_hack_us_weve_only_been_around_five_days_thx_we_love_you
+        avatar_id: GhostPost.avatar_id
 
     # Commenting this out as we now append the new Ghostpost
     $('#avatarName').html GhostPost.please_have_some_respect_dont_hack_us_weve_only_been_around_five_days_thx_we_love_you
