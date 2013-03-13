@@ -68,24 +68,24 @@ window.GhostPost =
     nouns = ['Hipster','Soap','Spork','Bunny','Jock','Foot','Elbow','Cat','Hippopotamus','Sloth','Mormon','Child','Atheist','Pope','Whore','Platypus','Iguana','Walrus','Dolphin','Blunderbuss','Fritatta','Flapjack','Dumbo','Meanie','Crab','Dungeon','Temple','Ninja','Wombat','Pirate','Motel','Buccaneer','Didgeridoo','Girdle','Manscape','Weasel','Chimpanzee','Poltergeist','Boar','Pilot','Taco','Burrito','Flauta','Hamburger','Cheeseburger','Pancake','Kangaroo','Dog','Feline','Troll','Hacker','Manchild','Elephant','Asshat','Ass','Donkey','Horse','Cow','Duck','Pig','Giraffe','Lion','Book','Phone','Desk','Dentist','Doctor','Comedian','CEO','Startup','Bus','Car','Spork','T-Rex','Dino','President','Lop','Mop','Flipflop','Booger','Name','Dingo','Toe Jam','Wafer','Sasquatch','Lampshade','Monster','Wolfboy','Raccoon','Oatmeal','Muffin','Hoarder','Hipster','Melon','Goat','Sweatervest','Horsemeat','Centaur','Meatloaf','Lasagna','Magician','Samurai','Lemur','Empanada','Goatboy','Cat Lady','Armpit','Delivery','Pill','Handbag','Mitten','Pimp Cup','Redneck','Engrish','Cabbie','Sushi','Celebutante','LoveLetter','Nymph', 'Scoble','McClure','Zuckerberg']
 
     if (localStorage.username and localStorage.avatar_id) and (!GhostPost.resetName)
-      GhostPost.please_have_some_respect_dont_hack_us_weve_only_been_around_five_days_thx_we_love_you = localStorage.username
+      GhostPost.username = localStorage.username
       GhostPost.avatar_id = localStorage.avatar_id
     else
       # create new avatar / image
-      GhostPost.please_have_some_respect_dont_hack_us_weve_only_been_around_five_days_thx_we_love_you = adjectives[Math.floor(Math.random()*adjectives.length)] + nouns[Math.floor(Math.random()*nouns.length)]
+      GhostPost.username = adjectives[Math.floor(Math.random()*adjectives.length)] + nouns[Math.floor(Math.random()*nouns.length)]
       GhostPost.avatar_id = Math.floor(Math.random()*24) + 1
-      localStorage.username = GhostPost.please_have_some_respect_dont_hack_us_weve_only_been_around_five_days_thx_we_love_you
+      localStorage.username = GhostPost.username
       localStorage.avatar_id = GhostPost.avatar_id
 
       # Display new Avatar Message and image on the screen
       $("#avatarNotificationDiv").html HandlebarsTemplates['messages/avatarNotification']
-        username: GhostPost.please_have_some_respect_dont_hack_us_weve_only_been_around_five_days_thx_we_love_you
+        username: GhostPost.username
         avatar_id: GhostPost.avatar_id
 
     # Commenting this out as we now append the new Ghostpost
-    $('#avatarName').html GhostPost.please_have_some_respect_dont_hack_us_weve_only_been_around_five_days_thx_we_love_you
+    $('#avatarName').html GhostPost.username
     $('#avatarImage').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
-    $('#avatarNameSmall').html GhostPost.please_have_some_respect_dont_hack_us_weve_only_been_around_five_days_thx_we_love_you
+    $('#avatarNameSmall').html GhostPost.username
     $('#avatarImageSmall').attr 'src', '/assets/avatars/av' + GhostPost.avatar_id + '.png'
     $('html, body').scrollTop $(document).height()
 
@@ -97,7 +97,7 @@ window.GhostPost =
           alert 'Whoa there! Max message length is around 140.9 chars.'
       else
         @messagesRef.push
-          name: GhostPost.please_have_some_respect_dont_hack_us_weve_only_been_around_five_days_thx_we_love_you
+          name: GhostPost.username
           avatar_id: GhostPost.avatar_id
           text: text
           created_at: Date.now()
@@ -125,7 +125,7 @@ window.GhostPost =
     # Add a callback that is triggered for each chat message.
     @messagesRef.limit(30).on "child_added", (snapshot) ->
       message = snapshot.val()
-      if (message.created_at > GhostPost.joined_at) && message.name != GhostPost.please_have_some_respect_dont_hack_us_weve_only_been_around_five_days_thx_we_love_you && window.webkitNotifications
+      if (message.created_at > GhostPost.joined_at) && message.name != GhostPost.username && window.webkitNotifications
         GhostPost.desktopNotify message
       if message.text
         message.time = humaneDate(new Date(message.created_at))
@@ -133,7 +133,7 @@ window.GhostPost =
         #Check if the user is idle - hasn't scrolled in x seconds
         if $(document).scrollTop()  > $(document).height() - ( 2* $(window).height() )
           $('html, body').scrollTop $(document).height()
-        $('li[data-username="' + GhostPost.please_have_some_respect_dont_hack_us_weve_only_been_around_five_days_thx_we_love_you + '"]').addClass('mine')
+        $('li[data-username="' + GhostPost.username + '"]').addClass('mine')
 
   desktopNotify: (data) ->
     havePermission = window.webkitNotifications.checkPermission()
