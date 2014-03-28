@@ -139,7 +139,7 @@ window.GhostPost =
     havePermission = window.webkitNotifications.checkPermission()
     if havePermission is 0
       # 0 is PERMISSION_ALLOWED
-      notification = window.webkitNotifications.createNotification("http://ghostpost.io/assets/avatars/av" + GhostPost.avatar_id + '.png', "Ghost by " + data.name, data.text)
+      notification = window.webkitNotifications.createNotification("http://ghst.me/assets/avatars/av" + GhostPost.avatar_id + '.png', "Ghost by " + data.name, data.text)
 
       notification.show()
     else
@@ -165,8 +165,8 @@ Handlebars.registerHelper 'messageText', (text) ->
   if typeof text != 'string'
     text = text.string
   text = Handlebars.Utils.escapeExpression text
-  text = text.replace(///\s#([\w\d]+)\b///g, "<a target='_blank' href='http://ghostpost.io/$1' class='messageLink'>#$1</a>")
-  text = text.replace(///^#([\w\d]+)\b///g, "<a target='_blank' href='http://ghostpost.io/$1' class='messageLink'>#$1</a>")
+  text = text.replace(///\s#([\w\d]+)\b///g, "<a target='_blank' href='http://ghst.me/$1' class='messageLink'>#$1</a>")
+  text = text.replace(///^#([\w\d]+)\b///g, "<a target='_blank' href='http://ghst.me/$1' class='messageLink'>#$1</a>")
   return new Handlebars.SafeString(text);
 
 # Live update times on the page every minute
